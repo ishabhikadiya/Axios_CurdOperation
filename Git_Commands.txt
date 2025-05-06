@@ -1,0 +1,35 @@
+git init 
+
+git status
+
+git add .
+
+git status
+
+PS D:\Reactjscode\react_pro2> git commit -m "add initial files"
+
+PS D:\Reactjscode\react_pro2> git status
+
+PS D:\Reactjscode\react_pro2> git remote add origin https://github.com/ishabhikadiya/React_project2.git
+
+PS D:\Reactjscode\react_pro2> git remote -v
+
+PS D:\Reactjscode\react_pro2> git branch   
+
+PS D:\Reactjscode\react_pro2> git branch -M main
+
+PS D:\Reactjscode\react_pro2> git push origin main
+
+
+to install bun
+
+  npm install -g bun
+
+to conver into v19
+
+ bun install react@rc
+ npm install react@rc
+
+to host your project
+ 
+ npm run build
