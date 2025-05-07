@@ -1,39 +1,12 @@
 import { useState } from "react"
-import { deletePost, getPost } from "../API/PostApi"
+import { deletePost, editPost, getPost } from "../API/PostApi"
 import { useEffect } from "react";
-import { addPost } from "../API/PostApi";
+import { Form } from "./Form";
 
 export const GetData = () => {
 
-    const [data, setData] = useState([]);
-
-    const [addData, setAddData] = useState({
-        title: "",
-        body: "",
-    });
-
-    const handleOnChange = (e) => {
-
-        const { name, value } = e.target;
-
-        setAddData((prev) => ({ ...prev, [name]: value }))
-        // setData(addData);
-    }
-
-    const addPostdata = async() =>{
-        
-        const res =await addPost(addData);
-        setData([...data,res.data])
-        
-    }
-
-    const handleOnsubmit = (e) =>{
-        e.preventDefault();  
-
-        console.log(addData);
-        addPostdata();
-    }
-
+    const [data, setData] = useState([]);    
+    const [updateDataApi, setUpdateDataApi] = useState({});    
 
     const getPostData = async () => {
 
@@ -56,14 +29,24 @@ export const GetData = () => {
         setData(deleteddata);
     }
 
+    const handleOnEdit = (curElem) => {
+        setUpdateDataApi(curElem);
+    }   
+    
+
+        // const res = await editPost(id);
+        // const editData = data.find((curElem) => curElem.id === res.id);
+        // console.log(editData);
+        // setData((prev) => prev.map((curElem) => curElem.id === id ? { ...curElem, title:curElem.title, body:curElem.body } : curElem));
+    
+
     return (
         <>
-            <form action="" onSubmit={handleOnsubmit}>
-                <input type="text" name="title" value={addData.title} onChange={handleOnChange} />
-                <input type="text" name="body" value={addData.body} onChange={handleOnChange} />
-                <button type="submit">Add</button>
-            </form>
-
+        <Form data={data} 
+              setData={setData} 
+              setUpdateDataApi={setUpdateDataApi}
+              updateDataApi={updateDataApi}
+              />
             {data.map((curElem) => {
                 const { id, title, body } = curElem;
                 return (
@@ -72,6 +55,7 @@ export const GetData = () => {
                             <h1>{title}</h1>
                             <h1>{body}</h1>
                             <button onClick={() => handleOnDetete(id)}>Delete</button>
+                            <button onClick={() => handleOnEdit(curElem)}>Edit</button>
                         </li>
                     </>
                 )

@@ -21,4 +21,9 @@ export const addPost = (post) =>{
     // "https://jsonplaceholder.typicode.com/post"
 
 }
+export const editPost = (post) =>{
+    return api.put(`/posts`,post);
+    // "https://jsonplaceholder.typicode.com/post"
+
+}
 
